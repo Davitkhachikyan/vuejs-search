@@ -45,7 +45,7 @@
             loadData(page) {
                 let url = this.url + '/api/search?page=' + page;
                 this.axios.post(url, {data: this.data
-                }).then(response => this.$emit('sendData', response.data.data))
+                }).then(response => this.$emit('sendData', response.data, this.data))
             }
         }
     }

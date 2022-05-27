@@ -93,7 +93,7 @@ public function showAll(Request $request)
                 });
             });
         }
-        $prods = $products->paginate(20);
+        $prods = $products->paginate(5);
 
         foreach ($prods as $product)
         {

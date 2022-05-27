@@ -2076,6 +2076,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2087,7 +2088,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       url: document.head.querySelector('meta[name="url"]').content,
       rows: [],
-      prods: {}
+      prods: {},
+      args: {},
+      searchProds: {}
     };
   },
   mounted: function mounted() {
@@ -2104,8 +2107,21 @@ __webpack_require__.r(__webpack_exports__);
         _this.prods = response.data;
       });
     },
-    sendData: function sendData(data) {
-      this.rows = data;
+    sendData: function sendData(data, args) {
+      this.rows = data.data;
+      this.args = args;
+      this.searchProds = data;
+      this.prods = {};
+    },
+    loadSearchData: function loadSearchData(page) {
+      var _this2 = this;
+
+      var url = this.url + '/api/search?page=' + page;
+      this.axios.post(url, {
+        data: this.args
+      }).then(function (response) {
+        _this2.searchProds = response.data;
+      });
     }
   }
 });
@@ -2173,7 +2189,7 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post(url, {
         data: this.data
       }).then(function (response) {
-        return _this.$emit('sendData', response.data.data);
+        return _this.$emit('sendData', response.data, _this.data);
       });
     }
   }
@@ -44515,10 +44531,19 @@ var render = function () {
         [
           _c("Table", { attrs: { rows: _vm.rows } }),
           _vm._v(" "),
-          _c("pagination", {
-            attrs: { data: _vm.prods },
-            on: { "pagination-change-page": _vm.loadData },
-          }),
+          _vm.prods
+            ? _c("pagination", {
+                attrs: { data: _vm.prods },
+                on: { "pagination-change-page": _vm.loadData },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.searchProds
+            ? _c("pagination", {
+                attrs: { data: _vm.searchProds },
+                on: { "pagination-change-page": _vm.loadSearchData },
+              })
+            : _vm._e(),
         ],
         1
       ),
