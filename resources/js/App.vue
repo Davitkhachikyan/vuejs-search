@@ -1,11 +1,11 @@
 <template>
     <div>
         <Search @sendData="sendData"/>
-     <div class="table">
-        <Table :rows="rows" />
-         <pagination v-if="prods" :data="prods" @pagination-change-page="loadData"></pagination>
-         <pagination  v-if="searchProds" :data="searchProds" @pagination-change-page="loadSearchData"></pagination>
-      </div>
+        <div class="table">
+            <Table :rows="rows" />
+            <pagination v-if="prods" :data="prods" @pagination-change-page="loadData"></pagination>
+            <pagination  v-if="searchProds" :data="searchProds" @pagination-change-page="loadSearchData"></pagination>
+        </div>
     </div>
 </template>
 <script>
@@ -43,15 +43,17 @@ export default {
             let url = this.url + '/api/search?page=' + page;
             this.axios.post(url, {data: this.args
             }).then(response =>  {
+                this.rows = response.data.data
                 this.searchProds = response.data
             })
         }
     },
 }
 </script>
+
 <style>
     .table {
-    float: left;
-    width: 75%;
+        float: left;
+        width: 75%;
     }
 </style>

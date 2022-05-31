@@ -3,10 +3,9 @@
         <vue-good-table
             :columns="columns"
             :rows="rows"
-          >
- </vue-good-table>
+        >
+        </vue-good-table>
     </div>
-
 </template>
 
 <script>
@@ -35,24 +34,16 @@ export default {
                     field: 'available',
                     type: 'text',
                 },
-
                 {
                     label: 'Category',
                     field: 'category',
                     type: 'text',
                 },
             ],
-
         };
     },
 };
-
 </script>
-
-<style>
-
-</style>
-
 
 
 

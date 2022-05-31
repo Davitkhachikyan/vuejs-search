@@ -25,32 +25,30 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                url: document.head.querySelector('meta[name="url"]').content,
-                data: {
-                    minPrice: '',
-                    maxPrice: '',
-                    available: '',
-                    category: ''
-                }
-            }
-        },
-        methods: {
-            loadData(page) {
-                let url = this.url + '/api/search?page=' + page;
-                this.axios.post(url, {data: this.data
-                }).then(response => this.$emit('sendData', response.data, this.data))
+export default {
+    data() {
+        return {
+            url: document.head.querySelector('meta[name="url"]').content,
+            data: {
+                minPrice: '',
+                maxPrice: '',
+                available: '',
+                category: ''
             }
         }
+    },
+    methods: {
+        loadData(page) {
+            let url = this.url + '/api/search?page=' + page;
+            this.axios.post(url, {data: this.data
+            }).then(response => this.$emit('sendData', response.data, this.data))
+        }
     }
+}
 </script>
-
 
 <style>
     .search {
@@ -59,7 +57,6 @@
         width: 25%;
         border-left: solid #07874c 1px
     }
-
     .search {
         text-align: center;
         font-family: fantasy;
