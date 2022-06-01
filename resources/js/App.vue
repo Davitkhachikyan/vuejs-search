@@ -1,18 +1,23 @@
 <template>
     <div>
+        <div>
+            <Header />
+        </div>
+
         <Search @sendData="sendData"/>
         <div class="table">
             <Table :rows="rows" />
             <pagination v-if="prods" :data="prods" @pagination-change-page="loadData"></pagination>
-            <pagination  v-if="searchProds" :data="searchProds" @pagination-change-page="loadSearchData"></pagination>
+            <pagination :data="searchProds" @pagination-change-page="loadSearchData"></pagination>
         </div>
     </div>
 </template>
 <script>
 import Table from "./components/Table";
 import Search from "./components/Search";
+import Header from "./components/Header";
 export default {
-    components: {Search, Table},
+    components: {Header, Search, Table},
     data() {
         return {
             url: document.head.querySelector('meta[name="url"]').content,

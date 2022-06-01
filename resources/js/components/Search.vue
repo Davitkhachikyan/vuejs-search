@@ -52,12 +52,9 @@ export default {
 
 <style>
     .search {
-        margin-top:15px;
         float: right;
         width: 25%;
-        border-left: solid #07874c 1px
-    }
-    .search {
+        border-left: solid #07874c 1px;
         text-align: center;
         font-family: fantasy;
         color: grey
